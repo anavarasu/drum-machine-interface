@@ -1,7 +1,7 @@
 // Controls a single drum.
 module drum_controller#(
 	parameter PATTERN_WIDTH = 8,
-	parameter COUNT_WIDTH = 4
+	parameter COUNT_WIDTH = 4 // binary number of this width must be able to count to 2*PATTERN_WIDTH-1
 	// parameter N = 16
 )(
 	input logic [PATTERN_WIDTH-1:0] pattern_i,
@@ -15,7 +15,7 @@ module drum_controller#(
 	logic [COUNT_WIDTH-1:0] count;
 
 	n_counter #(
-		.WIDTH(COUNT_WIDTH),
+		.WIDTH(COUNT_WIDTH)
 	) counter (
 		.clk(clk),
 		.rst(rst),
