@@ -3,12 +3,12 @@
 //	       n - number that counter counts up to
 
 module n_counter #(
-	parameter WIDTH = 2,
-	parameter n = 3
+	parameter WIDTH
 )(
 	input logic clk, 
 	input logic rst, 
 	input logic en_i_n,
+	input logic [WIDTH-1:0] n,
 
 	output logic [WIDTH-1:0] count_o
 );

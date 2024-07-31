@@ -1,6 +1,6 @@
 // Controls a single drum.
 module drum_controller#(
-	parameter PATTERN_WIDTH = 16,
+	parameter PATTERN_WIDTH = 8,
 	parameter COUNT_WIDTH = 4
 	// parameter N = 16
 )(
@@ -8,6 +8,7 @@ module drum_controller#(
 	input logic clk, 
 	input logic rst,
 	input logic en_i_n,
+	input logic [COUNT_WIDTH-1:0] n,
 
 	output logic pattern_o
 );
@@ -15,16 +16,16 @@ module drum_controller#(
 
 	n_counter #(
 		.WIDTH(COUNT_WIDTH),
-		.n(PATTERN_WIDTH)
 	) counter (
 		.clk(clk),
 		.rst(rst),
 		.en_i_n(en_i_n),
+		.n(n),
 
 		.count_o(count)
 	);
 	
-	nxm_mux #(
+	drum_mux #(
 		.n(PATTERN_WIDTH),
 		.s(COUNT_WIDTH),
 		.m(1)
